@@ -14,14 +14,45 @@ import java.util.ArrayList;
 public class Locadora {
     private ArrayList<Carro> carros;
     String nome;
+    int limite;
+    Taxa regular;
+    Taxa fidelidade;
+    
 
-    public Locadora(String nome) {
+    public Locadora(String nome,int limite,Taxa regular,Taxa fidelidade) {
         this.nome = nome;
+        this.limite=limite;
+        this.fidelidade=fidelidade;
+        this.regular=regular;
         carros = new ArrayList<>();
+        
     }
     public void addCarro(Carro carro){
         carros.add(carro);
     }
+    public void removeCarro(Carro carro){
+        carros.remove(carro);
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public int getLimite() {
+        return limite;
+    }
+
+    @Override
+    public String toString() {
+        String nomeCarro="";
+        for(Carro carro:carros){
+            nomeCarro+=carro.getNome()+" ";
+        }
+        nomeCarro+=": "+this.nome;
+        return nomeCarro;
+    }
+    
+    
     
     
 }
