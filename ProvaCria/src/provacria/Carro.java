@@ -5,13 +5,15 @@
  */
 package provacria;
 
+import java.io.Serializable;
+
 /**
  *
  * @author João Paulo
  */
-public class Carro {
+public class Carro implements Serializable {
     String nome;
-    
+    private static final long serialVersionUID =  -4419856798427564309L;
 
     public Carro(String nome) {
         this.nome = nome;

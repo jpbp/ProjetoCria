@@ -5,13 +5,15 @@
  */
 package provacria;
 
+import java.io.Serializable;
+
 /**
  *
  * @author João Paulo
  */
-public class Cliente {
+public class Cliente implements Serializable {
     String tipoDoCliente;
-
+    private static final long serialVersionUID =  6529685098267757690L;
     public Cliente(String tipoDoCliente) {
         this.tipoDoCliente = tipoDoCliente;
     }

@@ -5,14 +5,15 @@
  */
 package provacria;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author João Paulo
  */
-public class Gerenciamento {
-    
+public class Gerenciamento implements Serializable {
+    private static final long serialVersionUID =   -6381940001768359885l;
     private ArrayList<Locadora> locadoras;
 
     public Gerenciamento() {
@@ -43,14 +44,12 @@ public class Gerenciamento {
             return locadoras.get(i);
         }
         
-    }     
-    public Locadora CarroMaisBarato(int dias,Cliente cliente,int limite){
-        if(cliente.getTipoDoCliente().equals("normal")){
-            return limiteIdeal(limite);
-        }else{
-            return limiteIdeal(limite);
-        }
+    }    
+
+    @Override
+    public String toString() {
+        return "teste";
     }
-        
+    
 }
    

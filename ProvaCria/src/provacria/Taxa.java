@@ -5,13 +5,16 @@
  */
 package provacria;
 
+import java.io.Serializable;
+
 /**
  *
  * @author João Paulo
  */
-public class Taxa {
+public class Taxa implements Serializable {
     double semana;
     double finalDeSemana;
+    private static final long serialVersionUID =   6792098431215253667L;
 
     public Taxa(double semana, double finalDeSemana) {
         this.semana = semana;

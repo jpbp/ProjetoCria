@@ -5,19 +5,21 @@
  */
 package provacria;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author João Paulo
  */
-public class Locadora {
+public class Locadora implements Serializable {
     private ArrayList<Carro> carros;
     String nome;
     int limite;
     Taxa regular;
     Taxa fidelidade;
     
+    private static final long serialVersionUID =    4364857267638998630l;
 
     public Locadora(String nome,int limite,Taxa regular,Taxa fidelidade) {
         this.nome = nome;
