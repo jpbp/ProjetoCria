@@ -11,11 +11,15 @@ package provacria;
  */
 public class Carro {
     String nome;
-    Locadora locadora;
+    
 
-    public Carro(String nome, Locadora locadora) {
+    public Carro(String nome) {
         this.nome = nome;
-        this.locadora = locadora;
+        
+    }
+
+    public String getNome() {
+        return nome;
     }
     
 }
