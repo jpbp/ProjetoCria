@@ -19,13 +19,13 @@ public class ProvaCria {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        if(args[0].equals("-adm")){
+        if(args[0].equals("adm")){
             System.out.println("nada");
-        }else if(args[0].equals("-teste")){
+        }else{
             System.out.println("aquiii");
             try{
-                String nome="C:\\Users\\joao_\\OneDrive\\Documentos\\NetBeansProjects\\ProjetoCria\\ProvaCria\\teste.txt";
-                FileReader arq = new FileReader(nome);
+                
+                FileReader arq = new FileReader(args[0]);
                 BufferedReader lerArq = new BufferedReader(arq);
 
                 String linha = lerArq.readLine(); // lê a primeira linha
@@ -36,18 +36,18 @@ public class ProvaCria {
                  char limite;
                  if(Character.isDigit(linha.charAt(8))){
                      limite=linha.charAt(8);
+                     System.out.println(limite);
                  }else{
                      limite=linha.charAt(9);
                  }
-                 carregarArquivo(limite);
+                 
+                 
+                carregarArquivo(Character.getNumericValue(limite));
                 arq.close();
               } catch (IOException e) {
                   System.err.printf("Erro na abertura do arquivo: %s.\n",
                     e.getMessage());
               }
-            
-            
-            
         }
        
     }
@@ -63,6 +63,7 @@ public class ProvaCria {
         
     }
     public static void carregarArquivo(int limite){
+       
         Carro c1 = new Carro("GOL");
         Carro c2 = new Carro("FERRARI");
         Carro c3 = new Carro("NAVIGATOR");
@@ -91,7 +92,7 @@ public class ProvaCria {
         g.addLocadoras(l2);
         g.addLocadoras(l3);
         
-        Locadora certa = g.CarroMaisBarato(3, cliente, 1);
+        Locadora certa = g.limiteIdeal(limite);
         if(certa!=null){
             System.out.println(certa);
         }else{
