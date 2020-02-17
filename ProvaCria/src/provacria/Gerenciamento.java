@@ -28,7 +28,6 @@ public class Gerenciamento {
         int posicao=0;
         int menor=locadoras.get(0).getLimite();
         for(Locadora loc : locadoras){
-            System.out.println(loc.getNome());
            if( ( (loc.getLimite() - limite) >=0) && (loc.getLimite()>=limite)){
                 if((loc.getLimite()-limite)<=menor){
  
@@ -38,7 +37,6 @@ public class Gerenciamento {
              }
            posicao++;
         }
-        System.out.println(i+" posicao do array");
         if(i==-1){
             return null;
         }else{
