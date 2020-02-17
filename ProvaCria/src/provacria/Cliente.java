@@ -11,16 +11,10 @@ package provacria;
  */
 public class Cliente {
     String tipoDoCliente;
-    double taxaSemana;
-    double taxaFimDeSemena;
 
-    public Cliente(String tipoDoCliente, double taxaSemana, double taxaFimDeSemena) {
+    public Cliente(String tipoDoCliente) {
         this.tipoDoCliente = tipoDoCliente;
-        this.taxaSemana = taxaSemana;
-        this.taxaFimDeSemena = taxaFimDeSemena;
     }
-
-
     public String getTipoDoCliente() {
         return tipoDoCliente;
     }
