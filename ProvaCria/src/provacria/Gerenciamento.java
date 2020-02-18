@@ -67,7 +67,7 @@ public class Gerenciamento implements Serializable {
         }
     }
     //Metodo que encontra a melhor loja e carro para o cliente
-    public Locadora limiteIdeal(int limite){
+    public String limiteIdeal(int limite){
         int i=-1;
         int posicao=0;
         int menor=locadoras.get(0).getLimite();
@@ -89,7 +89,7 @@ public class Gerenciamento implements Serializable {
         if(i==-1){
             return null;
         }else{
-            return locadoras.get(i);
+            return locadoras.get(i).toString();
         }
         
     }    
@@ -121,6 +121,7 @@ public class Gerenciamento implements Serializable {
         } 
         return l;
     }
+    
    
 }
    
