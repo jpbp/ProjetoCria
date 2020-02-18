@@ -12,6 +12,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.Scanner;
 /**
  *
  * @author João Paulo
@@ -23,18 +24,19 @@ public class ProvaCria {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        if(args[0].equals("-adm")){
-            System.out.println("nada");
+        if(args[0].equals("adm")){
+            menu();
         }else{
             principal(args[0]);  
             
             //salvar();
             //Gerenciamento g=carregar();
-            
+           // System.out.println(g.toString());
         }
     }
     
     public static void menu(){
+        Scanner ler = new Scanner(System.in); 
         System.out.println("----Bem vindo----");
         System.out.println("1 - Adicionar Carros");
         System.out.println("2 - Remover Carros");
@@ -42,25 +44,57 @@ public class ProvaCria {
         System.out.println("4 - Remover lojas");
         System.out.println("5 - Alteração das taxas");
         System.out.println("6- listar Tudo");
+        System.out.print("Escolha uma das opções acima: ");
+        int escolha = ler.nextInt();
+        Gerenciamento g =carregar();
+        if(escolha==1){
+            System.out.print("Nome da loja para adicionar um carro: ");
+            String nomeLoja= ler.next();
+            
+            
+            System.out.print("Nome do carro a ser adicionado na loja "+nomeLoja+":");
+            String nomeCarro = ler.next();
+           
+            Carro c1 = new Carro(nomeCarro);
+           
+            if(g.addCarro(c1, nomeLoja)){
+                System.out.println("Carro Adicionada com sucesso!!");
+            }else{
+                System.out.println("Ocorreu algum erro, tente de novo!!");
+            }
+            
+        }else if(escolha==2){
+            System.out.println("Nome da loja para remover um carro: ");
+            String nomeLoja= ler.next();
+            
+            
+            System.out.println("Nome do carro a ser removido na loja: ");
+            String nomeCarro = ler.next();
+           
+            
+            System.out.println("aqui"+nomeLoja+" "+nomeCarro);
+            if(g.removerCarro(nomeCarro, nomeLoja)){
+                System.out.println("Carro Removido com sucesso!!");
+            }else{
+                System.out.println("Ocorreu algum erro, tente de novo!!");
+            }
+            
+        }
+        if(escolha==6){
+            System.out.println(g);
+        }
+        salvar(g);
     }
-    public static void salvar(){
-        System.out.println("aqui");
-        Gerenciamento ger = new Gerenciamento();
-         Carro c1 = new Carro("GOL");
-          Taxa r1= new Taxa(210,200);
-          Taxa p1=new Taxa (150,90);
-          Locadora l1 = new Locadora("South",4,r1,p1);
-          l1.addCarro(c1);
-          ger.addLocadoras(l1);
+    public static void salvar(Gerenciamento g){
           try
             {
               //Gera o arquivo para armazenar o objeto
               FileOutputStream arquivoGrav =
-              new FileOutputStream("C:\\Users\\joao_\\OneDrive\\Documentos\\NetBeansProjects\\ProjetoCria\\ProvaCria\\saida.dat");
+              new FileOutputStream("saida.dat");
               //Classe responsavel por inserir os objetos
               ObjectOutputStream objGravar = new ObjectOutputStream(arquivoGrav);
               //Grava o objeto cliente no arquivo
-              objGravar.writeObject(ger);
+              objGravar.writeObject(g);
               objGravar.flush();
               objGravar.close();
               arquivoGrav.flush();
@@ -77,7 +111,7 @@ public class ProvaCria {
      Gerenciamento g = null;
      try
     {
-      ObjectInputStream oos= new ObjectInputStream (new FileInputStream("C:\\Users\\joao_\\OneDrive\\Documentos\\NetBeansProjects\\ProjetoCria\\ProvaCria\\saida.dat"));
+      ObjectInputStream oos= new ObjectInputStream (new FileInputStream("saida.dat"));
       g=(Gerenciamento) oos.readObject();
       oos.close();
     }
@@ -105,39 +139,12 @@ public class ProvaCria {
                  }else{
                      limite=linha.charAt(9);
                  }
-                Carro c1 = new Carro("GOL");
-                Carro c2 = new Carro("FERRARI");
-                Carro c3 = new Carro("NAVIGATOR");
-
-                Taxa r1= new Taxa(210,200);
-                Taxa r2= new Taxa(530,200);
-                Taxa r3= new Taxa(630,600);
-
-                Taxa p1=new Taxa (150,90);
-                Taxa p2=new Taxa (150,90);
-                Taxa p3=new Taxa (580,590);
-
-                Locadora l1 = new Locadora("South",4,r1,p1);
-                Locadora l2 = new Locadora("West",2,r2,p2);
-                Locadora l3 = new Locadora("North",7,r3,p3);
-
-                Cliente cliente = new Cliente("Premium");
-
                 Gerenciamento g = carregar();
-
-                l1.addCarro(c1);
-                l2.addCarro(c2);
-                l3.addCarro(c3);
-
-               // g.addLocadoras(l1);
-               // g.addLocadoras(l2);
-               // g.addLocadoras(l3);
-
                 Locadora certa = g.limiteIdeal(Character.getNumericValue(limite));
                 if(certa!=null){
                     System.out.println(certa);
                 }else{
-                    System.out.println("nao tem");
+                    System.out.println("Não existe essa opção!!!!");
                 }
                arq.close();
               } catch (IOException e) {
