@@ -24,6 +24,29 @@ public class Gerenciamento implements Serializable {
         locadoras.add(locadora);
     } 
     
+    private int getIndiceLocadora(String nome){
+        
+        int i=-1;
+        int contador=0;
+         for(Locadora loc: locadoras){
+           if(nome.equals(loc.getNome())){
+               i=contador;
+           }
+           contador++;
+        }
+         return i;
+    }
+    public boolean addCarro(Carro carro,String nome){
+        System.out.println(nome);
+        System.out.println(carro.getNome());
+        int i = getIndiceLocadora(nome);
+        if(i!=-1){
+            (locadoras.get(i)).addCarro(carro);
+            return true;
+        }else{
+            return false;
+        }
+    }
     public Locadora limiteIdeal(int limite){
         int i=-1;
         int posicao=0;
@@ -48,8 +71,12 @@ public class Gerenciamento implements Serializable {
 
     @Override
     public String toString() {
-        return "teste";
+        String l="";
+        for(Locadora loc: locadoras){
+            l+=loc+"\n";
+        }
+        return l;
     }
-    
+   
 }
    
