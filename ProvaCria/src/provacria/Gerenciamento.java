@@ -15,15 +15,15 @@ import java.util.ArrayList;
 public class Gerenciamento implements Serializable {
     private static final long serialVersionUID =   -6381940001768359885l;
     private ArrayList<Locadora> locadoras;
-
+    //Contruturor 
     public Gerenciamento() {
         locadoras =  new ArrayList<>();
     }
-    
+    //Metodo para adicionar carros
     public void addLocadoras(Locadora locadora){
         locadoras.add(locadora);
     } 
-    
+    //metodo para obter o indice da locadora 
     private int getIndiceLocadora(String nome){
         
         int i=-1;
@@ -36,6 +36,7 @@ public class Gerenciamento implements Serializable {
         }
          return i;
     }
+    //metodo para adicionar o carro
     public boolean addCarro(Carro carro,String nome){
         int i = getIndiceLocadora(nome);
         if(i!=-1){
@@ -45,6 +46,7 @@ public class Gerenciamento implements Serializable {
             return false;
         }
     }
+    //metodo para remover uma determinada loja
     public boolean removerLoja(String nome){
         int i = getIndiceLocadora(nome);
         if(i!=-1){
@@ -54,6 +56,7 @@ public class Gerenciamento implements Serializable {
             return false;
         }
     }
+    ////metodo para remover um determinado carro
     public boolean removerCarro(String carro,String loja){
         int i = getIndiceLocadora(loja);
         if(i!=-1){
@@ -63,11 +66,17 @@ public class Gerenciamento implements Serializable {
             return false;
         }
     }
+    //Metodo que encontra a melhor loja e carro para o cliente
     public Locadora limiteIdeal(int limite){
         int i=-1;
         int posicao=0;
         int menor=locadoras.get(0).getLimite();
         for(Locadora loc : locadoras){
+            /*Primeiro eu tenho que achar qual é a melhor loja de acordo com o limite, faço isso na
+            primeira condição, e a segunda é para garantir que se o limite passado for
+            maior que o limite da loja já nem entre na condição
+              
+            */
            if( ( (loc.getLimite() - limite) >=0) && (loc.getLimite()>=limite)){
                 if((loc.getLimite()-limite)<=menor){
  
@@ -84,7 +93,7 @@ public class Gerenciamento implements Serializable {
         }
         
     }    
-
+    //metodo para saida do problema
     @Override
     public String toString() {
         String l="";
@@ -93,6 +102,7 @@ public class Gerenciamento implements Serializable {
         }
         return l;
     }
+    //meodo para listas as lojas 
     public String listaLojas(){
         String l="";
         for(Locadora loc: locadoras){
@@ -100,6 +110,7 @@ public class Gerenciamento implements Serializable {
         }
         return l;
     }
+    //metodo para listas todas as taxas 
     public String listaTaxa(){
        String l="";
         for(Locadora loc: locadoras){
