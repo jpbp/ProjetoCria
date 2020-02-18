@@ -32,8 +32,21 @@ public class Locadora implements Serializable {
     public void addCarro(Carro carro){
         carros.add(carro);
     }
-    public void removeCarro(Carro carro){
-        carros.remove(carro);
+    private int getIndiceCarro(String nome){
+        
+        int i=-1;
+        int contador=0;
+         for(Carro carro: carros){
+           if(nome.equals(carro.getNome())){
+               i=contador;
+           }
+           contador++;
+        }
+         return i;
+    }
+    public void removeCarro(String carro){
+        int i = getIndiceCarro(carro);
+        carros.remove(i);   
     }
 
     public String getNome() {
@@ -43,7 +56,13 @@ public class Locadora implements Serializable {
     public int getLimite() {
         return limite;
     }
-
+    public String listarCarro(){
+       String nomeCarro="";
+        for(Carro carro:carros){
+            nomeCarro+=carro.getNome()+" ";
+        }
+        return nomeCarro;
+    }
     @Override
     public String toString() {
         String nomeCarro="";
