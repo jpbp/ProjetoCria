@@ -1,4 +1,3 @@
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -30,6 +29,29 @@ public class ProvaCria {
             menu();
         } else {
             principal(args[0]);
+            /*
+            Gerenciamento g = new Gerenciamento();
+            Carro c1 = new Carro("FERRARI");
+            Carro c2= new Carro("NAVIGATOR");
+            Carro c3= new Carro("MOBI");
+            Taxa taxaRS1= new Taxa(210,200);
+            Taxa taxaRF1= new Taxa(150,90);
+            Taxa taxaRS2= new Taxa(530,200);
+            Taxa taxaRF2= new Taxa(150,90);
+            Taxa taxaRS3= new Taxa(630,600);
+            Taxa taxaRF3= new Taxa(580,590);
+            Locadora l1 = new Locadora("SouthCar",4,taxaRS1,taxaRF1);
+            Locadora l2 = new Locadora("WestCar",2,taxaRS2,taxaRF2);
+            Locadora l3 = new Locadora("NorthCar",7,taxaRS3,taxaRF3);
+            l1.addCarro(c1);
+            l2.addCarro(c2);
+            l3.addCarro(c3);
+            g.addLocadoras(l1);
+            g.addLocadoras(l2);
+            g.addLocadoras(l3);
+            System.out.println(g.limiteIdeal(1));
+            salvar(g);
+            */
         }
     }
     //Metodo para exibição do menu aparecendo as opçoes
@@ -144,13 +166,15 @@ public class ProvaCria {
     public static Gerenciamento carregar() {
         Gerenciamento g = null;
         try {
-            ObjectInputStream oos = new ObjectInputStream(new FileInputStream("saida.dat"));
+            ObjectInputStream oos = new ObjectInputStream(new FileInputStream("C:\\Users\\joao_\\OneDrive\\Documentos\\NetBeansProjects\\ProjetoCria\\ProvaCria\\dist\\saida.dat"));
             g = (Gerenciamento) oos.readObject();
             System.out.println("Carregou");
             oos.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
+        System.out.println("aqui");
+        System.out.println(g);
         return g;
     }
     //Metodo principal do programa para achar o carro ideal
@@ -185,6 +209,7 @@ public class ProvaCria {
             else{
                 limite = Character.toString(linha.charAt(9));
             }
+            System.out.println(limite+"aqui");
             Gerenciamento g = carregar();
             certa = g.limiteIdeal(Integer.parseInt(limite));
             //Caso positivo a resposta certa
