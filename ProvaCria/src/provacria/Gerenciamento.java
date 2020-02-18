@@ -93,13 +93,20 @@ public class Gerenciamento implements Serializable {
         }
         return l;
     }
+    public String listaLojas(){
+        String l="";
+        for(Locadora loc: locadoras){
+            l+=loc.getNome()+"\n"+loc.listarCarro()+"\n";
+        }
+        return l;
+    }
     public String listaTaxa(){
        String l="";
         for(Locadora loc: locadoras){
-            l+=loc.getNome()+" Regular Semana: "+loc.regular.getSemana()+"\n"+
+            l+=loc.getNome()+"\n"+ "Regular Semana: "+loc.regular.getSemana()+"\n"+
                     "Regular Fim de Semana: "+loc.regular.getFinalDeSemana()+"\n"+
                     "Fidelidade Semana: "+loc.fidelidade.getSemana()+"\n"+
-                            "Fidelidade fim de semana: "+loc.fidelidade.getFinalDeSemana();
+                            "Fidelidade fim de semana: "+loc.fidelidade.getFinalDeSemana()+"\n";
         } 
         return l;
     }
