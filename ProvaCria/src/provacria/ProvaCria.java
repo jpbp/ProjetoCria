@@ -146,6 +146,7 @@ public class ProvaCria {
         try {
             ObjectInputStream oos = new ObjectInputStream(new FileInputStream("saida.dat"));
             g = (Gerenciamento) oos.readObject();
+            System.out.println("Carregou");
             oos.close();
         } catch (Exception e) {
             e.printStackTrace();
@@ -153,7 +154,8 @@ public class ProvaCria {
         return g;
     }
     //Metodo principal do programa para achar o carro ideal
-    public static void principal(String dir) {
+    public static String principal(String dir) {
+        String certa=null;
         try {
 
             FileReader arq = new FileReader(dir);
@@ -184,7 +186,7 @@ public class ProvaCria {
                 limite = Character.toString(linha.charAt(9));
             }
             Gerenciamento g = carregar();
-            Locadora certa = g.limiteIdeal(Integer.parseInt(limite));
+            certa = g.limiteIdeal(Integer.parseInt(limite));
             //Caso positivo a resposta certa
             if (certa != null) {
                 System.out.println(certa);
@@ -198,7 +200,7 @@ public class ProvaCria {
             System.err.printf("Erro na abertura do arquivo: %s.\n",
             e.getMessage());
         }
-
+        return certa;
     }
 
 }
