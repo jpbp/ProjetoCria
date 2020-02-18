@@ -193,7 +193,7 @@ public class ProvaCria {
         try {
             ObjectInputStream oos = new ObjectInputStream(new FileInputStream("saida.dat"));
             g = (Gerenciamento) oos.readObject();
-            System.out.println("Carregou");
+            
             oos.close();
         } catch (Exception e) {
             e.printStackTrace();
@@ -233,7 +233,7 @@ public class ProvaCria {
             else{
                 limite = Character.toString(linha.charAt(9));
             }
-            System.out.println(limite+"aqui");
+            
             Gerenciamento g = carregar();
             certa = g.limiteIdeal(Integer.parseInt(limite));
             //Caso positivo a resposta certa
