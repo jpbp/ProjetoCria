@@ -37,11 +37,27 @@ public class Gerenciamento implements Serializable {
          return i;
     }
     public boolean addCarro(Carro carro,String nome){
-        System.out.println(nome);
-        System.out.println(carro.getNome());
         int i = getIndiceLocadora(nome);
         if(i!=-1){
             (locadoras.get(i)).addCarro(carro);
+            return true;
+        }else{
+            return false;
+        }
+    }
+    public boolean removerLoja(String nome){
+        int i = getIndiceLocadora(nome);
+        if(i!=-1){
+            locadoras.remove(i);
+            return true;
+        }else{
+            return false;
+        }
+    }
+    public boolean removerCarro(String carro,String loja){
+        int i = getIndiceLocadora(loja);
+        if(i!=-1){
+            (locadoras.get(i)).removeCarro(carro);
             return true;
         }else{
             return false;
@@ -75,6 +91,16 @@ public class Gerenciamento implements Serializable {
         for(Locadora loc: locadoras){
             l+=loc+"\n";
         }
+        return l;
+    }
+    public String listaTaxa(){
+       String l="";
+        for(Locadora loc: locadoras){
+            l+=loc.getNome()+" Regular Semana: "+loc.regular.getSemana()+"\n"+
+                    "Regular Fim de Semana: "+loc.regular.getFinalDeSemana()+"\n"+
+                    "Fidelidade Semana: "+loc.fidelidade.getSemana()+"\n"+
+                            "Fidelidade fim de semana: "+loc.fidelidade.getFinalDeSemana();
+        } 
         return l;
     }
    
